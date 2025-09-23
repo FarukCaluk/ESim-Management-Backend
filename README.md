@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # 📱 ESim Management Backend
 
 Backend application for managing users and SIM cards.
