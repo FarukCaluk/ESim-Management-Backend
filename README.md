@@ -136,4 +136,3 @@ A Postman collection is provided in the `assets/` folder for easy testing of the
 - File: `assets/postman_collection.json`
 - Import it into Postman to quickly test all endpoints.
 
->>>>>>> 036c32a8eeb2f8502b679b28b5b967b66ffc1adf
