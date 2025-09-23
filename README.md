@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> a13d17721485e30d6592177318c444efa6227042
 # 📱 ESim Management Backend
 
 Backend application for managing users and SIM cards.
@@ -141,3 +145,7 @@ A Postman collection is provided in the `assets/` folder for easy testing of the
 
 - File: `assets/postman_collection.json`
 - Import it into Postman to quickly test all endpoints.
+<<<<<<< HEAD
+=======
+
+>>>>>>> a13d17721485e30d6592177318c444efa6227042
