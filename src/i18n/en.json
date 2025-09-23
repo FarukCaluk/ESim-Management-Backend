@@ -1,0 +1,6 @@
+{
+  "errors": {
+    "user_not_found": "User not found",
+    "simcard_not_found": "SIM card not found"
+  }
+}

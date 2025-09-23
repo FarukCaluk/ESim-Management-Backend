@@ -13,10 +13,10 @@ async function bootstrap() {
 
   // --- Swagger setup ---
   const swaggerConfig = new DocumentBuilder()
-    .setTitle('SIM Management API')
-    .setDescription('API za korisnike i SIM kartice')
-    .setVersion('1.0')
-    .build();
+  .setTitle('SIM Management API')
+  .setDescription('API for managing users and SIM cards')
+  .setVersion('1.0')
+  .build();
 
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api', app, document);
