@@ -10,7 +10,11 @@ export class CreateUserDto {
   @IsEmail()
   email: string;
 
-  @ApiProperty({ example: '123456', description: 'Lozinka korisnika, minimalno 6 karaktera' })
+  @ApiProperty({
+    example: '123456',
+    description: 'Lozinka korisnika, minimalno 6 karaktera',
+    writeOnly: true,
+  })
   @IsNotEmpty()
   @MinLength(6)
   password: string;

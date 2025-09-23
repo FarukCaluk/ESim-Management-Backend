@@ -4,18 +4,16 @@ import { Document } from 'mongoose';
 export type UserDocument = User & Document;
 
 // Sub-schema za profile
-@Schema({ _id: false }) // _id: false jer je ovo samo embedded objekat
+@Schema({ _id: false })
 export class Profile {
   @Prop({ default: [] })
-  orders: string[]; // ili objekti narudžbi
+  orders: string[];
 
   @Prop()
   avatarUrl: string;
 
   @Prop()
   phoneNumber: string;
-
-  //  ovdje sve dodatne podatke koji će biti prikazani u frontend-u
 }
 
 export const ProfileSchema = SchemaFactory.createForClass(Profile);
@@ -28,7 +26,7 @@ export class User {
   @Prop({ required: true, unique: true })
   email: string;
 
-  @Prop({ required: true })
+  @Prop({ required: true, select: false })
   password: string;
 
   @Prop({ default: false })
@@ -56,7 +54,7 @@ export class User {
   metadata: Record<string, any>;
 
   @Prop({ type: ProfileSchema, default: {} })
-  profile: Profile; // sada je profile tip klase Profile
+  profile: Profile;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

@@ -22,7 +22,10 @@ export class UsersController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: Partial<CreateUserDto>) {
+  update(
+    @Param('id') id: string,
+    @Body() updateUserDto: Partial<CreateUserDto>
+  ) {
     return this.usersService.update(id, updateUserDto);
   }
 }

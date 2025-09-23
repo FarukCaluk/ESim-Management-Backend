@@ -1,0 +1,8 @@
+{
+  "errors": {
+    "USER_NOT_FOUND": "User not found",
+    "SIMCARD_NOT_FOUND": "SimCard not found",
+    "EMAIL_ALREADY_EXISTS": "Email already exists",
+    "ICCID_ALREADY_EXISTS": "ICCID already exists"
+  }
+}

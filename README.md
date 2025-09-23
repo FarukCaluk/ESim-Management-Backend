@@ -1,19 +1,18 @@
-<<<<<<< HEAD
 # 📱 ESim Management Backend
 
 Backend application for managing users and SIM cards.
 
 ## 🚀 Technologies
 
-* [NestJS](https://nestjs.com/) – backend framework
-* [MongoDB](https://www.mongodb.com/) – database
-* [Mongoose](https://mongoosejs.com/) – ODM for MongoDB
-* [Swagger](https://swagger.io/) – API documentation and testing
-* [Postman](https://www.postman.com/) – API testing during development
+- [NestJS](https://nestjs.com/) – backend framework
+- [MongoDB](https://www.mongodb.com/) – database
+- [Mongoose](https://mongoosejs.com/) – ODM for MongoDB
+- [Swagger](https://swagger.io/) – API documentation and testing
+- [Postman](https://www.postman.com/) – API testing during development
 
 ## 📖 API Documentation
 
-* Swagger documentation is available at:
+- Swagger documentation is available at:
 
   ```
   http://localhost:3000/api
@@ -27,17 +26,20 @@ Backend application for managing users and SIM cards.
    git clone https://github.com/FarukCaluk/ESim-Management-Backend.git
    cd ESim-Management-Backend/backend
    ```
+
 2. Install dependencies:
 
    ```bash
    npm install
    ```
+
 3. Configure your `.env` file (example):
 
    ```env
    MONGO_URI=mongodb+srv://<user>:<password>@cluster.mongodb.net/sim-man
    PORT=3000
    ```
+
 4. Run the application:
 
    ```bash
@@ -48,17 +50,17 @@ Backend application for managing users and SIM cards.
 
 ### 👤 Users
 
-* `POST /users` – create a new user
-* `GET /users` – get all users
-* `GET /users/:id` – get user by ID
-* `PUT /users/:id` – update user
+- `POST /users` – create a new user
+- `GET /users` – get all users
+- `GET /users/:id` – get user by ID
+- `PUT /users/:id` – update user
 
 ### 💳 SimCards
 
-* `POST /simcards` – create a new SIM card
-* `GET /simcards` – get all SIM cards
-* `GET /simcards/:id` – get SIM card by ID
-* `PUT /simcards/:id` – update SIM card
+- `POST /simcards` – create a new SIM card
+- `GET /simcards` – get all SIM cards
+- `GET /simcards/:id` – get SIM card by ID
+- `PUT /simcards/:id` – update SIM card
 
 ## Postman Collection
 
@@ -68,21 +70,22 @@ A Postman collection is provided in the `assets/` folder for easy testing of the
 - Import it into Postman to quickly test all endpoints.
 
 =======
+
 # 📱 ESim Management Backend
 
 Backend application for managing users and SIM cards.
 
 ## 🚀 Technologies
 
-* [NestJS](https://nestjs.com/) – backend framework
-* [MongoDB](https://www.mongodb.com/) – database
-* [Mongoose](https://mongoosejs.com/) – ODM for MongoDB
-* [Swagger](https://swagger.io/) – API documentation and testing
-* [Postman](https://www.postman.com/) – API testing during development
+- [NestJS](https://nestjs.com/) – backend framework
+- [MongoDB](https://www.mongodb.com/) – database
+- [Mongoose](https://mongoosejs.com/) – ODM for MongoDB
+- [Swagger](https://swagger.io/) – API documentation and testing
+- [Postman](https://www.postman.com/) – API testing during development
 
 ## 📖 API Documentation
 
-* Swagger documentation is available at:
+- Swagger documentation is available at:
 
   ```
   http://localhost:3000/api
@@ -96,17 +99,20 @@ Backend application for managing users and SIM cards.
    git clone https://github.com/FarukCaluk/ESim-Management-Backend.git
    cd ESim-Management-Backend/backend
    ```
+
 2. Install dependencies:
 
    ```bash
    npm install
    ```
+
 3. Configure your `.env` file (example):
 
    ```env
    MONGO_URI=mongodb+srv://<user>:<password>@cluster.mongodb.net/sim-man
    PORT=3000
    ```
+
 4. Run the application:
 
    ```bash
@@ -117,17 +123,17 @@ Backend application for managing users and SIM cards.
 
 ### 👤 Users
 
-* `POST /users` – create a new user
-* `GET /users` – get all users
-* `GET /users/:id` – get user by ID
-* `PUT /users/:id` – update user
+- `POST /users` – create a new user
+- `GET /users` – get all users
+- `GET /users/:id` – get user by ID
+- `PUT /users/:id` – update user
 
 ### 💳 SimCards
 
-* `POST /simcards` – create a new SIM card
-* `GET /simcards` – get all SIM cards
-* `GET /simcards/:id` – get SIM card by ID
-* `PUT /simcards/:id` – update SIM card
+- `POST /simcards` – create a new SIM card
+- `GET /simcards` – get all SIM cards
+- `GET /simcards/:id` – get SIM card by ID
+- `PUT /simcards/:id` – update SIM card
 
 ## Postman Collection
 
@@ -135,5 +141,3 @@ A Postman collection is provided in the `assets/` folder for easy testing of the
 
 - File: `assets/postman_collection.json`
 - Import it into Postman to quickly test all endpoints.
-
->>>>>>> 036c32a8eeb2f8502b679b28b5b967b66ffc1adf
