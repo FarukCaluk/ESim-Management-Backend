@@ -59,4 +59,10 @@ Backend application for managing users and SIM cards.
 * `GET /simcards/:id` – get SIM card by ID
 * `PUT /simcards/:id` – update SIM card
 
+## Postman Collection
+
+A Postman collection is provided in the `assets/` folder for easy testing of the API endpoints.
+
+- File: `assets/postman_collection.json`
+- Import it into Postman to quickly test all endpoints.
 
