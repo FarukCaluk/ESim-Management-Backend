@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put, Query } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 
@@ -17,15 +17,16 @@ export class UsersController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(id);
+  findOne(@Param('id') id: string, @Query('lang') lang?: string) {
+    return this.usersService.findOne(id, lang); // prosljeđuje lang
   }
 
   @Put(':id')
   update(
     @Param('id') id: string,
-    @Body() updateUserDto: Partial<CreateUserDto>
+    @Body() updateUserDto: Partial<CreateUserDto>,
+    @Query('lang') lang?: string
   ) {
-    return this.usersService.update(id, updateUserDto);
+    return this.usersService.update(id, updateUserDto, lang); // prosljeđuje lang
   }
 }

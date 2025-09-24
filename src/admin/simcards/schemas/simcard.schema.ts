@@ -23,7 +23,7 @@ export class SimCard {
   @Prop({ default: false })
   reserved: boolean;
 
-  @Prop({ default: () => new Date(Date.now() + 365*24*60*60*1000) }) // +12 mjeseci
+  @Prop({ default: () => new Date(Date.now() + 365 * 24 * 60 * 60 * 1000) }) // +12 mjeseci
   expirationDate: Date;
 }
 

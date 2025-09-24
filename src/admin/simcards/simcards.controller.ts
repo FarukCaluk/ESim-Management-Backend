@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Put  } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put } from '@nestjs/common';
 import { SimCardsService } from './simcards.service';
 import { CreateSimCardDto } from './dto/create-simcard.dto';
 
@@ -30,5 +30,4 @@ export class SimCardsController {
   update(@Param('id') id: string, @Body() simCardDto: any) {
     return this.simCardsService.update(id, simCardDto);
   }
-
 }

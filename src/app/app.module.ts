@@ -1,14 +1,13 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
+import { join } from 'path';
 import {
   I18nModule,
   QueryResolver,
   HeaderResolver,
   AcceptLanguageResolver,
 } from 'nestjs-i18n';
-import { join } from 'path';
-
 import { UsersModule } from '../admin/users/users.module';
 import { SimCardsModule } from '../admin/simcards/simcards.module';
 
@@ -27,7 +26,7 @@ import { SimCardsModule } from '../admin/simcards/simcards.module';
     I18nModule.forRoot({
       fallbackLanguage: 'en',
       loaderOptions: {
-        path: join(__dirname, 'i18n/'),
+        path: join(__dirname, '..', 'assets/i18n/'), // __dirname -> dist/app
         watch: true,
       },
       resolvers: [

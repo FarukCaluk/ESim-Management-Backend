@@ -10,7 +10,7 @@ export class AppController {
   @Get('test-db')
   testDb() {
     return {
-      readyState: this.connection.readyState // 1 = connected
+      readyState: this.connection.readyState, // 1 = connected
     };
   }
 }

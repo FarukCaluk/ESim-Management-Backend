@@ -1,8 +1,0 @@
-{
-  "errors": {
-    "USER_NOT_FOUND": "Korisnik nije pronađen",
-    "SIMCARD_NOT_FOUND": "Sim kartica nije pronađena",
-    "EMAIL_ALREADY_EXISTS": "Email već postoji",
-    "ICCID_ALREADY_EXISTS": "ICCID već postoji"
-  }
-}
