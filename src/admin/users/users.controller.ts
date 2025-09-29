@@ -18,7 +18,7 @@ export class UsersController {
 
   @Get(':id')
   findOne(@Param('id') id: string, @Query('lang') lang?: string) {
-    return this.usersService.findOne(id, lang); // prosljeđuje lang
+    return this.usersService.findOne(id, lang);
   }
 
   @Put(':id')

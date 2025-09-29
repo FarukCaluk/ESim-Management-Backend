@@ -26,7 +26,7 @@ import { SimCardsModule } from '../admin/simcards/simcards.module';
     I18nModule.forRoot({
       fallbackLanguage: 'en',
       loaderOptions: {
-        path: join(__dirname, '..', 'assets/i18n/'), // __dirname -> dist/app
+        path: join(__dirname, '..', 'assets/i18n/'),
         watch: true,
       },
       resolvers: [
