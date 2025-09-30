@@ -1,6 +1,0 @@
-{
-  "errors": {
-    "USER_NOT_FOUND": "Korisnik nije pronađen",
-    "EMAIL_ALREADY_EXISTS": "Email već postoji"
-  }
-}

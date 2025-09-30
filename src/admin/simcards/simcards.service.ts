@@ -5,15 +5,13 @@ import {
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { I18nService } from 'nestjs-i18n';
 import { SimCard, SimCardDocument } from './schemas/simcard.schema';
 import { CreateSimCardDto } from './dto/create-simcard.dto';
 
 @Injectable()
 export class SimCardsService {
   constructor(
-    @InjectModel(SimCard.name) private simCardModel: Model<SimCardDocument>,
-    private readonly i18n: I18nService
+    @InjectModel(SimCard.name) private simCardModel: Model<SimCardDocument>
   ) {}
 
   async create(createSimCardDto: CreateSimCardDto): Promise<SimCardDocument> {
@@ -25,7 +23,7 @@ export class SimCardsService {
         success: false,
         error: {
           code: 'ICCID_EXISTS',
-          message: await this.i18n.translate('errors.ICCID_EXISTS'),
+          message: 'ICCID already exists',
         },
       });
     }
@@ -47,7 +45,7 @@ export class SimCardsService {
         success: false,
         error: {
           code: 'SIMCARD_NOT_FOUND',
-          message: await this.i18n.translate('errors.SIMCARD_NOT_FOUND'),
+          message: 'Sim card not found',
         },
       });
     }
@@ -70,7 +68,7 @@ export class SimCardsService {
         success: false,
         error: {
           code: 'SIMCARD_NOT_FOUND',
-          message: await this.i18n.translate('errors.SIMCARD_NOT_FOUND'),
+          message: 'Sim card not found',
         },
       });
     }

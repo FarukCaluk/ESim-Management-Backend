@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Param, Put, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Put,
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 
@@ -7,26 +16,55 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
+  async create(@Body() createUserDto: CreateUserDto) {
+    try {
+      const user = await this.usersService.create(createUserDto);
+      return {
+        status: 'success',
+        message: 'User created successfully',
+        user,
+      };
+    } catch (error) {
+      throw new BadRequestException(error.message || 'Failed to create user');
+    }
   }
 
   @Get()
-  findAll() {
-    return this.usersService.findAll();
+  async findAll() {
+    const users = await this.usersService.findAll();
+    return {
+      status: 'success',
+      message: 'Users retrieved successfully',
+      data: users,
+    };
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string, @Query('lang') lang?: string) {
-    return this.usersService.findOne(id, lang);
+  async findOne(@Param('id') id: string) {
+    const user = await this.usersService.findOne(id);
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    return {
+      status: 'success',
+      message: 'User retrieved successfully',
+      user,
+    };
   }
 
   @Put(':id')
-  update(
+  async update(
     @Param('id') id: string,
-    @Body() updateUserDto: Partial<CreateUserDto>,
-    @Query('lang') lang?: string
+    @Body() updateUserDto: Partial<CreateUserDto>
   ) {
-    return this.usersService.update(id, updateUserDto, lang); // prosljeđuje lang
+    const user = await this.usersService.update(id, updateUserDto);
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    return {
+      status: 'success',
+      message: 'User updated successfully',
+      user,
+    };
   }
 }
