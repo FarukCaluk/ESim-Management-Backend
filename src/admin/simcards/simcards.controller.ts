@@ -1,8 +1,18 @@
-import { Controller, Get, Post, Body, Param, Put } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Put,
+  UseGuards,
+} from '@nestjs/common';
 import { SimCardsService } from './simcards.service';
 import { CreateSimCardDto } from './dto/create-simcard.dto';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('simcards')
+@UseGuards(JwtAuthGuard)
 export class SimCardsController {
   constructor(private readonly simCardsService: SimCardsService) {}
 
