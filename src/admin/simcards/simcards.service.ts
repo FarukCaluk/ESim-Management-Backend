@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { SimCard, SimCardDocument } from './schemas/simcard.schema';
+import { SimCard, SimCardDocument } from '../../schemas/simcard.schema';
 import { CreateSimCardDto } from './dto/create-simcard.dto';
 
 @Injectable()

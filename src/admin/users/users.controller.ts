@@ -12,12 +12,14 @@ import {
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { Roles } from 'src/auth/roles/roles.decorator';
 
 @Controller('users')
 @UseGuards(JwtAuthGuard)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  @Roles('admin')
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
     try {
@@ -32,6 +34,7 @@ export class UsersController {
     }
   }
 
+  @Roles('admin', 'support')
   @Get()
   async findAll() {
     const users = await this.usersService.findAll();
@@ -42,6 +45,7 @@ export class UsersController {
     };
   }
 
+  @Roles('admin')
   @Get(':id')
   async findOne(@Param('id') id: string) {
     const user = await this.usersService.findOne(id);
@@ -55,6 +59,7 @@ export class UsersController {
     };
   }
 
+  @Roles('admin')
   @Put(':id')
   async update(
     @Param('id') id: string,
@@ -68,6 +73,17 @@ export class UsersController {
       status: 'success',
       message: 'User updated successfully',
       user,
+    };
+  }
+
+  @Roles('agency')
+  @Get('agency-stats')
+  async getAgencyStats() {
+    // Implement the logic for agency stats here
+    return {
+      status: 'success',
+      message: 'Agency stats retrieved successfully',
+      // data: agencyStats, // Uncomment and replace with actual data
     };
   }
 }
