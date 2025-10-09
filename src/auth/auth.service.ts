@@ -14,11 +14,13 @@ export class AuthService {
   constructor(private jwtService: JwtService) {}
 
   async validateUser(email: string, pass: string) {
+    console.log('Login attempt:', email, pass); // <-- Add this line
     const user = this.users.find(
       (u) => u.email === email && u.password === pass
     );
+    console.log('User found:', user); // <-- Add this line
     if (user) {
-      return user; // user now includes role
+      return user;
     }
     return null;
   }
