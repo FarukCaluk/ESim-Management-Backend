@@ -4,6 +4,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { join } from 'path';
 import { UsersModule } from '../admin/users/users.module';
 import { SimCardsModule } from '../admin/simcards/simcards.module';
+import { PackagesModule } from '../admin/packages/packages.module';
+import { CollectionsModule } from '../admin/collections/collections.module';
+import { PlansModule } from '../admin/plans/plans.module';
 import { AuthModule } from '../auth/auth.module';
 
 @Module({
@@ -21,6 +24,9 @@ import { AuthModule } from '../auth/auth.module';
     UsersModule,
     SimCardsModule,
     AuthModule,
+    PackagesModule,
+    CollectionsModule,
+    PlansModule,
   ],
 })
 export class AppModule {}
