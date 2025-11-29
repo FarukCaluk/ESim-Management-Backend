@@ -7,6 +7,7 @@ import {
   Put,
   Delete,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import { CollectionsService } from './collections.service';
 import { CreateCollectionDto } from './dto/create-collection.dto';
@@ -26,8 +27,8 @@ export class CollectionsController {
 
   @Roles('admin', 'support', 'agency')
   @Get()
-  findAll() {
-    return this.collectionsService.findAll();
+  findAll(@Query('search') search?: string) {
+    return this.collectionsService.findAll(search);
   }
 
   @Roles('admin', 'support', 'agency')

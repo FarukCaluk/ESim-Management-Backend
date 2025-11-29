@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model, Document } from 'mongoose';
 import { Collection } from 'src/schemas/collection.schema';
 import { CreateCollectionDto } from './dto/create-collection.dto';
+import { FilterQuery } from 'mongoose';
 
 @Injectable()
 export class CollectionsService {
@@ -16,8 +17,20 @@ export class CollectionsService {
     return created.save();
   }
 
-  async findAll(): Promise<Collection[]> {
-    return this.collectionModel.find().exec();
+  async findAll(search?: string): Promise<{ collections: Collection[] }> {
+    const filter: FilterQuery<Collection> = {};
+
+    const normalized = search?.trim();
+    if (normalized) {
+      const limited = normalized.slice(0, 64);
+      if (limited.length > 0) {
+        const escaped = limited.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        filter.name = { $regex: escaped, $options: 'i' };
+      }
+    }
+
+    const collections = await this.collectionModel.find(filter).exec();
+    return { collections };
   }
 
   async findOne(id: string): Promise<Collection | null> {

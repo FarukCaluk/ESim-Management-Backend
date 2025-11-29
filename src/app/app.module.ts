@@ -8,6 +8,8 @@ import { PackagesModule } from '../admin/packages/packages.module';
 import { CollectionsModule } from '../admin/collections/collections.module';
 import { PlansModule } from '../admin/plans/plans.module';
 import { AuthModule } from '../auth/auth.module';
+import { ProfileModule } from '../profile/profile.module';
+import { DashboardModule } from '../dashboard/dashboard.module';
 
 @Module({
   imports: [
@@ -27,6 +29,8 @@ import { AuthModule } from '../auth/auth.module';
     PackagesModule,
     CollectionsModule,
     PlansModule,
+    ProfileModule,
+    DashboardModule,
   ],
 })
 export class AppModule {}

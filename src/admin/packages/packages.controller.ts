@@ -7,6 +7,7 @@ import {
   Put,
   Delete,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import { PackagesService } from './packages.service';
 import { Roles } from 'src/auth/roles/roles.decorator';
@@ -27,8 +28,8 @@ export class PackagesController {
 
   @Roles('admin', 'support')
   @Get()
-  async findAll() {
-    return this.packagesService.findAll();
+  async findAll(@Query('search') search?: string) {
+    return this.packagesService.findAll(search);
   }
 
   @Roles('admin', 'support')
