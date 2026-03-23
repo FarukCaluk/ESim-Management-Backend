@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Plan } from 'src/schemas/plan.schema';
 import { CreatePlanDto } from './dto/create-plan.dto';
+import { FilterQuery } from 'mongoose';
 
 @Injectable()
 export class PlansService {
@@ -13,8 +14,20 @@ export class PlansService {
     return created.save();
   }
 
-  async findAll(): Promise<Plan[]> {
-    return this.planModel.find().exec();
+  async findAll(search?: string): Promise<{ plans: Plan[] }> {
+    const filter: FilterQuery<Plan> = {};
+
+    const normalized = search?.trim();
+    if (normalized) {
+      const limited = normalized.slice(0, 64);
+      if (limited.length > 0) {
+        const escaped = limited.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        filter.name = { $regex: escaped, $options: 'i' };
+      }
+    }
+
+    const plans = await this.planModel.find(filter).exec();
+    return { plans };
   }
 
   async findOne(id: string): Promise<Plan | null> {

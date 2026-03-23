@@ -31,8 +31,28 @@ export class SimCardsService {
     return createdSimCard.save();
   }
 
-  async findAll(): Promise<SimCardDocument[]> {
-    return this.simCardModel.find().exec();
+  async findAll(search?: string): Promise<SimCardDocument[]> {
+    const query = this.simCardModel.find();
+
+    if (typeof search === 'string') {
+      const trimmedSearch = search.trim();
+      if (trimmedSearch.length > 64) {
+        throw new BadRequestException({
+          success: false,
+          error: {
+            code: 'SEARCH_TOO_LONG',
+            message: 'Search query must be 64 characters or fewer',
+          },
+        });
+      }
+
+      if (trimmedSearch.length > 0) {
+        const escaped = trimmedSearch.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        query.where({ iccid: { $regex: escaped, $options: 'i' } });
+      }
+    }
+
+    return query.exec();
   }
 
   async findOne(id: string): Promise<SimCardDocument> {

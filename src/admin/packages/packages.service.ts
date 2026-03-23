@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Package } from 'src/schemas/package.schema';
@@ -14,8 +14,27 @@ export class PackagesService {
     return createdPackage.save();
   }
 
-  async findAll(): Promise<Package[]> {
-    return this.packageModel.find().exec();
+  async findAll(search?: string): Promise<Package[]> {
+    const query = this.packageModel.find();
+
+    if (typeof search === 'string') {
+      const trimmed = search.trim();
+      if (trimmed.length > 64) {
+        throw new BadRequestException({
+          success: false,
+          error: {
+            code: 'SEARCH_TOO_LONG',
+            message: 'Search query must be 64 characters or fewer',
+          },
+        });
+      }
+      if (trimmed.length > 0) {
+        const escaped = trimmed.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        query.where({ name: { $regex: escaped, $options: 'i' } });
+      }
+    }
+
+    return query.exec();
   }
 
   async findOne(id: string): Promise<Package | null> {

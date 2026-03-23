@@ -8,6 +8,7 @@ import {
   NotFoundException,
   BadRequestException,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -36,8 +37,8 @@ export class UsersController {
 
   @Roles('admin', 'support')
   @Get()
-  async findAll() {
-    const users = await this.usersService.findAll();
+  async findAll(@Query('search') search?: string) {
+    const users = await this.usersService.findAll(search);
     return {
       status: 'success',
       message: 'Users retrieved successfully',

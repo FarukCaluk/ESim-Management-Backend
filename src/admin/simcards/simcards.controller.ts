@@ -6,6 +6,7 @@ import {
   Param,
   Put,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import { SimCardsService } from './simcards.service';
 import { CreateSimCardDto } from './dto/create-simcard.dto';
@@ -25,8 +26,8 @@ export class SimCardsController {
 
   @Roles('admin', 'support', 'agency')
   @Get()
-  findAll() {
-    return this.simCardsService.findAll();
+  findAll(@Query('search') search?: string) {
+    return this.simCardsService.findAll(search);
   }
 
   @Roles('admin', 'support', 'agency')

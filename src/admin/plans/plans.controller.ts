@@ -7,6 +7,7 @@ import {
   Put,
   Delete,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import { PlansService } from './plans.service';
 import { CreatePlanDto } from './dto/create-plan.dto';
@@ -26,8 +27,8 @@ export class PlansController {
 
   @Roles('admin', 'support', 'agency')
   @Get()
-  findAll() {
-    return this.plansService.findAll();
+  findAll(@Query('search') search?: string) {
+    return this.plansService.findAll(search);
   }
 
   @Roles('admin', 'support', 'agency')

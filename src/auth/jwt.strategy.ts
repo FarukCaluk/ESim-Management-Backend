@@ -1,10 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
+import { UsersService } from '../admin/users/users.service';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor() {
+  constructor(private readonly usersService: UsersService) {
     const secret = process.env.SUPER_SECRET_KEY;
     if (!secret) {
       throw new Error(
@@ -20,6 +21,21 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
   async validate(payload: any) {
     console.log('JwtStrategy validate payload:', payload);
-    return { email: payload.sub, role: payload.role };
+    const email = payload.email ?? payload.sub;
+    if (!email) {
+      throw new UnauthorizedException('Invalid token payload: missing email');
+    }
+
+    const user = await this.usersService.findByEmail(email);
+    if (!user) {
+      throw new UnauthorizedException('User not found');
+    }
+
+    return {
+      id: user.id,
+      email: user.email,
+      role: payload.role ?? user.type,
+      name: user.name,
+    };
   }
 }
