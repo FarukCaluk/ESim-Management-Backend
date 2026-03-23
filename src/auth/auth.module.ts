@@ -15,6 +15,10 @@ import { JwtStrategy } from './jwt.strategy';
   ],
   providers: [AuthService, JwtStrategy],
   controllers: [AuthController],
-  exports: [AuthService],
+  exports: [AuthService, JwtModule],
 })
-export class AuthModule {}
+export class AuthModule {
+  constructor() {
+    console.log('JWT Secret:', process.env.SUPER_SECRET_KEY);
+  }
+}
